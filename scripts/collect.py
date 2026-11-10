@@ -101,6 +101,9 @@ def main():
                 if not title or not link:
                     continue
                 country, sector = classify(title, summary, query["country"])
+                # Excluir explicitamente esta notícia internacional do mercado marroquino.
+                if "fórum em xangai" in title.casefold() and "marrocos" not in title.casefold() and "maroc" not in title.casefold():
+                    country = "Internacional"
                 clean_title = re.sub(r"\s[-–|]\s" + re.escape(publisher) + r"\s*$", "", title, flags=re.I).strip()
                 key = link.split("&")[0]
                 if key in seen:
