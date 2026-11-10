@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Recolhe notícias RSS; nunca presume o país a partir da pesquisa RSS."""
+"""Recolhe notícias RSS com país inferido pelo conteúdo, nunca pelo feed."""
 import json, re, time, hashlib
 from pathlib import Path
 from urllib.parse import quote
