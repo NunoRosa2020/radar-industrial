@@ -1,1 +1,75 @@
-{"description":"Pesquisas RSS públicas do Google News. As notícias devem ser abertas na publicação original e confirmadas.","queries":[{"country":"Portugal","hl":"pt-PT","gl":"PT","ceid":"PT:pt","q":"(indústria OR fábrica OR investimento OR expansão) (plásticos OR injeção OR moldes OR automóvel OR metalomecânica)"},{"country":"Portugal","hl":"pt-PT","gl":"PT","ceid":"PT:pt","q":"nova fábrica OR investimento industrial OR expansão industrial"},{"country":"França","hl":"fr","gl":"FR","ceid":"FR:fr","q":"(plasturgie OR injection plastique OR moules OR automobile) (investissement OR usine OR extension)"},{"country":"França","hl":"fr","gl":"FR","ceid":"FR:fr","q":"nouvelle usine OR investissement industriel OR extension capacité industrie"},{"country":"Espanha","hl":"es","gl":"ES","ceid":"ES:es","q":"(inyección plástico OR moldes OR automoción OR industria) (inversión OR fábrica OR ampliación)"},{"country":"Espanha","hl":"es","gl":"ES","ceid":"ES:es","q":"nueva planta OR inversión industrial OR ampliación fábrica"},{"country":"Marrocos","hl":"fr","gl":"MA","ceid":"MA:fr","q":"(plasturgie OR injection plastique OR automobile OR usine) (investissement OR extension OR nouvelle usine)"},{"country":"Marrocos","hl":"fr","gl":"MA","ceid":"MA:fr","q":"industrie Maroc investissement usine automobile Tanger"},{"country":"Tunísia","hl":"fr","gl":"TN","ceid":"TN:fr","q":"(plasturgie OR injection plastique OR automobile OR usine) (investissement OR extension OR nouvelle usine)"},{"country":"Tunísia","hl":"fr","gl":"TN","ceid":"TN:fr","q":"industrie Tunisie investissement usine exportation"}]}
+{
+  "description": "Pesquisas RSS públicas do Google News. As notícias devem ser abertas na publicação original e confirmadas.",
+  "queries": [
+    {
+      "country": "Portugal",
+      "hl": "pt-PT",
+      "gl": "PT",
+      "ceid": "PT:pt",
+      "q": "(indústria OR fábrica OR investimento OR expansão) (plásticos OR injeção OR moldes OR automóvel OR metalomecânica)"
+    },
+    {
+      "country": "Portugal",
+      "hl": "pt-PT",
+      "gl": "PT",
+      "ceid": "PT:pt",
+      "q": "nova fábrica OR investimento industrial OR expansão industrial"
+    },
+    {
+      "country": "França",
+      "hl": "fr",
+      "gl": "FR",
+      "ceid": "FR:fr",
+      "q": "(plasturgie OR injection plastique OR moules OR automobile) (investissement OR usine OR extension)"
+    },
+    {
+      "country": "França",
+      "hl": "fr",
+      "gl": "FR",
+      "ceid": "FR:fr",
+      "q": "nouvelle usine OR investissement industriel OR extension capacité industrie"
+    },
+    {
+      "country": "Espanha",
+      "hl": "es",
+      "gl": "ES",
+      "ceid": "ES:es",
+      "q": "(inyección plástico OR moldes OR automoción OR industria) (inversión OR fábrica OR ampliación)"
+    },
+    {
+      "country": "Espanha",
+      "hl": "es",
+      "gl": "ES",
+      "ceid": "ES:es",
+      "q": "nueva planta OR inversión industrial OR ampliación fábrica"
+    },
+    {
+      "country": "Marrocos",
+      "hl": "fr",
+      "gl": "MA",
+      "ceid": "MA:fr",
+      "q": "(plasturgie OR injection plastique OR automobile OR usine) (investissement OR extension OR nouvelle usine)"
+    },
+    {
+      "country": "Marrocos",
+      "hl": "fr",
+      "gl": "MA",
+      "ceid": "MA:fr",
+      "q": "industrie Maroc investissement usine automobile Tanger"
+    },
+    {
+      "country": "Tunísia",
+      "hl": "fr",
+      "gl": "TN",
+      "ceid": "TN:fr",
+      "q": "(plasturgie OR injection plastique OR automobile OR usine) (investissement OR extension OR nouvelle usine)"
+    },
+    {
+      "country": "Tunísia",
+      "hl": "fr",
+      "gl": "TN",
+      "ceid": "TN:fr",
+      "q": "industrie Tunisie investissement usine exportation"
+    }
+  ]
+}
