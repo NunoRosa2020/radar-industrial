@@ -39,16 +39,14 @@ FOREIGN_MARKERS = [
 ]
 
 def classify(title, summary, feed_country):
-    # O país indicado pela pesquisa RSS é apenas o mercado de pesquisa,
-    # nunca prova a localização da notícia. O título tem prioridade.
-    def matches(text, marker_map):
-        low = text.casefold()
-        return [country for country, markers in marker_map.items()
-                if any(re.search(r"(?<![\\w])" + re.escape(m) + r"(?![\\w])", low) for m in markers)]
-
-    title_hits = matches(title, COUNTRY_MARKERS)
-    summary_hits = matches(summary, COUNTRY_MARKERS)
-    title_foreign = any(m in title.casefold() for m in FOREIGN_MARKERS)
+    # O país da pesquisa RSS nunca é prova da localização da notícia.
+    t = title.casefold()
+    s = summary.casefold()
+    title_hits = [country for country, markers in COUNTRY_MARKERS.items()
+                  if any(marker in t for marker in markers)]
+    summary_hits = [country for country, markers in COUNTRY_MARKERS.items()
+                    if any(marker in s for marker in markers)]
+    title_foreign = any(marker in t for marker in FOREIGN_MARKERS)
 
     if len(title_hits) == 1:
         country = title_hits[0]
@@ -61,11 +59,9 @@ def classify(title, summary, feed_country):
     elif len(summary_hits) > 1:
         country = "Por confirmar"
     else:
-        # Não herdar cegamente o país do feed: é precisamente a origem
-        # de falsos destaques nacionais em notícias internacionais.
         country = "Por confirmar"
 
-    combined = (title + " " + summary).casefold()
+    combined = t + " " + s
     sector = "Indústria geral"
     for label, terms in SECTORS:
         if any(term in combined for term in terms):
