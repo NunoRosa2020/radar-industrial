@@ -38,20 +38,37 @@ FOREIGN_MARKERS = [
     "turkey", "turquía", "turquia", "india", "japan", "mexico", "méxico", "argentina",
 ]
 
-def classify(text, feed_country):
-    low = text.casefold()
-    hits = [country for country, markers in COUNTRY_MARKERS.items() if any(m in low for m in markers)]
-    if len(hits) == 1:
-        country = hits[0]
-    elif len(hits) > 1:
-        country = feed_country if feed_country in hits else "Por confirmar"
-    elif any(m in low for m in FOREIGN_MARKERS):
+def classify(title, summary, feed_country):
+    # O país indicado pela pesquisa RSS é apenas o mercado de pesquisa,
+    # nunca prova a localização da notícia. O título tem prioridade.
+    def matches(text, marker_map):
+        low = text.casefold()
+        return [country for country, markers in marker_map.items()
+                if any(re.search(r"(?<![\\w])" + re.escape(m) + r"(?![\\w])", low) for m in markers)]
+
+    title_hits = matches(title, COUNTRY_MARKERS)
+    summary_hits = matches(summary, COUNTRY_MARKERS)
+    title_foreign = any(m in title.casefold() for m in FOREIGN_MARKERS)
+
+    if len(title_hits) == 1:
+        country = title_hits[0]
+    elif len(title_hits) > 1:
+        country = "Por confirmar"
+    elif title_foreign:
         country = "Internacional"
+    elif len(summary_hits) == 1:
+        country = summary_hits[0]
+    elif len(summary_hits) > 1:
+        country = "Por confirmar"
     else:
-        country = feed_country
+        # Não herdar cegamente o país do feed: é precisamente a origem
+        # de falsos destaques nacionais em notícias internacionais.
+        country = "Por confirmar"
+
+    combined = (title + " " + summary).casefold()
     sector = "Indústria geral"
     for label, terms in SECTORS:
-        if any(term in low for term in terms):
+        if any(term in combined for term in terms):
             sector = label
             break
     return country, sector
@@ -87,7 +104,7 @@ def main():
                 published = parse_date(item.findtext("pubDate"))
                 if not title or not link:
                     continue
-                country, sector = classify(" ".join([title, summary, publisher]), query["country"])
+                country, sector = classify(title, summary, query["country"])
                 clean_title = re.sub(r"\s[-–|]\s" + re.escape(publisher) + r"\s*$", "", title, flags=re.I).strip()
                 key = link.split("&")[0]
                 if key in seen:
